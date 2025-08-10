@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebastian Stephens - Professional Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --gt-navy: #003057;
+            --gt-gold: #B3A369;
+            --light-gray: #f8f9fa;
+            --dark-gray: #6c757d;
+        }
+
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: var(--gt-navy) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand, .nav-link {
+            color: white !important;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: var(--gt-gold) !important;
+            transition: color 0.3s ease;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--gt-navy) 0%, #004080 100%);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(179,163,105,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid var(--gt-gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            color: var(--gt-navy);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gt-gold);
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background-color: var(--gt-navy);
+            color: white;
+            font-weight: 600;
+            border: none;
+        }
+
+        .experience-item {
+            border-left: 3px solid var(--gt-gold);
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .company-name {
+            color: var(--gt-navy);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .position-title {
+            color: var(--gt-gold);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .date-location {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .skill-tag {
+            background-color: var(--gt-navy);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 0.2rem;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--gt-navy);
+            border-color: var(--gt-navy);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--gt-gold);
+            border-color: var(--gt-gold);
+            color: var(--gt-navy);
+        }
+
+        .btn-outline-primary {
+            color: var(--gt-navy);
+            border-color: var(--gt-navy);
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--gt-navy);
+            border-color: var(--gt-navy);
+        }
+
+        .social-icons a {
+            color: var(--gt-navy);
+            font-size: 2rem;
+            margin: 0 1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--gt-gold);
+            transform: scale(1.1);
+        }
+
+        footer {
+            background-color: var(--gt-navy);
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .project-card {
+            height: 100%;
+        }
+
+        .progress {
+            height: 8px;
+            background-color: #e9ecef;
+        }
+
+        .progress-bar {
+            background-color: var(--gt-gold);
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 80px 0 60px;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .social-icons a {
+                font-size: 1.5rem;
+                margin: 0 0.5rem;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">Sebastian Stephens</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-center">
+        <div class="container hero-content">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <img src="profile.jpg" alt="Sebastian Stephens" class="profile-image">
+                    <h1 class="display-4 fw-bold mb-3">Sebastian Stephens</h1>
+                    <h2 class="h4 mb-4" style="color: var(--gt-gold);">Business Analyst & Data Scientist</h2>
+                    <p class="lead mb-4">Master's in Analytics | Georgia Tech Graduate | Passionate about AI & Financial Technology</p>
+                    <div class="social-icons mb-4">
+                        <a href="mailto:sebastianstephens25@gmail.com" class="text-white"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.linkedin.com/in/sebastianxstephens" target = "_blank" class ="text-white"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/step021" target = "_blank" class="text-white"><i class="fab fa-github"></i></a>
+                    </div>
+                    <a href="#about" class="btn btn-primary btn-lg me-3">Learn More</a>
+                    <a href="#contact" class="btn btn-outline-light btn-lg">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title">About Me</h2>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 fade-in">
+                    <h3 class="h4 mb-3">Professional Summary</h3>
+                    <p class="lead">I'm a passionate Data Scientist and Business Analyst with a strong foundation in computer science and analytics. Currently pursuing my Master's in Analytics at Georgia Tech, I specialize in building data-driven solutions and AI-powered systems.</p>
+                    <p>With experience spanning software development, business analytics, and financial modeling, I bring a unique perspective to solving complex technical challenges. My work at Trawick International involves developing scalable permission management systems and implementing AI chatbot solutions that drive business efficiency.</p>
+                </div>
+                <div class="col-lg-6 mb-4 fade-in">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5><i class="fas fa-graduation-cap me-2"></i>Education</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <h6 class="company-name">Georgia Institute of Technology</h6>
+                                <p class="position-title">Master of Science in Analytics</p>
+                                <p class="date-location">Business Analytics Track | Aug 2025 - Dec 2026</p>
+                            </div>
+                            <div>
+                                <h6 class="company-name">Georgia Institute of Technology</h6>
+                                <p class="position-title">Bachelor of Science in Computer Science</p>
+                                <p class="date-location">Minor in Economics | GPA: 3.65 | Aug 2021 - May 2025</p>
+                                <p class="small"><strong>Honors:</strong> Faculty Highest Honors, Dean's List</p>
+                            </div>
+                            <div>
+                                <h6 class="company-name">Gulliver Preparatory School</h6>
+                                <p class="position-title">HS Diploma</p>
+                                <p class="date-location">AP Student | GPA: 5.82 | Aug 2017 - May 2021</p>
+                                <p class="small"><strong>Honors:</strong> National AP Scholar, 1510 SAT</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-5" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title">Professional Experience</h2>
+                </div>
+            </div>
+            
+            <div class="experience-item fade-in">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 mb-3">
+                        <h5 class="company-name">Trawick International</h5>
+                        <p class="date-location">Miami, FL<br>May 2025 - Present</p>
+                    </div>
+                    <div class="col-lg-9 col-md-8">
+                        <h4 class="position-title">Software Engineer I</h4>
+                        <ul>
+                            <li>Lead end-to-end development of a permission management system for 2M+ travel insurance policy records in SQL Server, streamlining business operations and boosting data governance efficiency 40%</li>
+                            <li>Enhance internal efficiency across the organization by creating an AI-powered chatbot solution with Azure AI Foundry and partnering cross-functionally with actuaries, compliance teams, and business stakeholders</li>
+                            <li>Implement CI/CD pipelines via Azure DevOps to accelerate feature deployment and ensure consistent delivery of client requirements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience-item fade-in">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 mb-3">
+                        <h5 class="company-name">Actuarial Factor</h5>
+                        <p class="date-location">Miami, FL<br>Jun 2024 - Dec 2024</p>
+                    </div>
+                    <div class="col-lg-9 col-md-8">
+                        <h4 class="position-title">Business Analyst Intern</h4>
+                        <ul>
+                            <li>Optimized the loss reserving process for over $1M+ in historical claims data by collaborating with senior actuarial consultants to develop a Python automation system leveraging data libraries such as Numpy, Pandas, and Sci-kit learn</li>
+                            <li>Performed quantitative analysis on Property & Casualty datasets from numerous clients to identify drivers of claim development, enhancing accuracy of financial models by 50%</li>
+                            <li>Delivered a presentation on GenAI models and LLM use cases to team members, bridging emerging tech and insurance strategy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience-item fade-in">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 mb-3">
+                        <h5 class="company-name">Assurant</h5>
+                        <p class="date-location">Atlanta, GA<br>Jun 2023 - Aug 2023</p>
+                    </div>
+                    <div class="col-lg-9 col-md-8">
+                        <h4 class="position-title">Data Science/Behavioral Analytics Intern</h4>
+                        <ul>
+                            <li>Reduced manual reporting time by 80% and enabled real-time visibility into team productivity by building a Power BI dashboard connected to SQL Server that automated the tracking of over 200 weekly tasks</li>
+                            <li>Refined agile workflows for over 20 global team members by partnering with scrum masters and stakeholders</li>
+                            <li>Performed data cleaning, transformation, and statistical analysis in Excel to uncover operational inefficiencies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title">Featured Projects</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 fade-in">
+                    <div class="card project-card">
+                        <div class="card-header">
+                            <h5><i class="fas fa-chart-line me-2"></i>Vertex Pharmaceuticals Valuation</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="date-location">Jan 2025 - Apr 2025</p>
+                            <p>Comprehensive financial valuation using DCF and Gordon Growth methods following FDA approval of a non-opioid pain treatment. Assessed market dynamics and competitive landscape.</p>
+                            <div class="mt-3">
+                                <span class="skill-tag">Financial Modeling</span>
+                                <span class="skill-tag">DCF Analysis</span>
+                                <span class="skill-tag">Market Research</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4 fade-in">
+                    <div class="card project-card">
+                        <div class="card-header">
+                            <h5><i class="fas fa-robot me-2"></i>Georgia Tech VIP - Robot Collective</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="date-location">Aug 2023 - Dec 2024</p>
+                            <p>Led a team of 10 students to establish a new research lab focused on robotics and AI. Authored documentation for OptiTrack motion capture system and received 5/5 peer evaluations.</p>
+                            <div class="mt-3">
+                                <span class="skill-tag">Research Leadership</span>
+                                <span class="skill-tag">Robotics</span>
+                                <span class="skill-tag">AI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4 fade-in">
+                    <div class="card project-card">
+                        <div class="card-header">
+                            <h5><i class="fas fa-football-ball me-2"></i>NFL Neural Network Predictor</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="date-location">Aug 2024 - Nov 2024</p>
+                            <p>Developed a neural network model using Python and Scikit-learn to predict NFL game winners with 60% accuracy. Applied advanced machine learning and feature engineering techniques.</p>
+                            <div class="mt-3">
+                                <span class="skill-tag">Machine Learning</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Neural Networks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title">Technical Skills</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4 fade-in">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5><i class="fas fa-code me-2"></i>Programming Languages</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Python</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>SQL</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>C#</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Java</span>
+                                    <span>70%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between">
+                                    <span>JavaScript</span>
+                                    <span>65%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4 fade-in">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5><i class="fas fa-tools me-2"></i>Tools & Technologies</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <span class="skill-tag mb-2">Power BI</span>
+                                    <span class="skill-tag mb-2">Excel</span>
+                                    <span class="skill-tag mb-2">Azure DevOps</span>
+                                    <span class="skill-tag mb-2">Azure Cloud</span>
+                                    <span class="skill-tag mb-2">SQL Server</span>
+                                    <span class="skill-tag mb-2">Pandas</span>
+                                </div>
+                                <div class="col-6">
+                                    <span class="skill-tag mb-2">Scikit-learn</span>
+                                    <span class="skill-tag mb-2">React.js</span>
+                                    <span class="skill-tag mb-2">Flask</span>
+                                    <span class="skill-tag mb-2">PowerPoint</span>
+                                    <span class="skill-tag mb-2">Git</span>
+                                    <span class="skill-tag mb-2">Docker</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-lg-12 fade-in">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5><i class="fas fa-brain me-2"></i>Core Competencies</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4 text-center mb-3">
+                                    <i class="fas fa-chart-bar fa-3x mb-3" style="color: var(--gt-gold);"></i>
+                                    <h6>Data Science & Analytics</h6>
+                                    <p class="small">Machine Learning, Statistical Analysis, Predictive Modeling</p>
+                                </div>
+                                <div class="col-md-4 text-center mb-3">
+                                    <i class="fas fa-cogs fa-3x mb-3" style="color: var(--gt-gold);"></i>
+                                    <h6>Software Engineering</h6>
+                                    <p class="small">Full-Stack Development, CI/CD, System Architecture</p>
+                                </div>
+                                <div class="col-md-4 text-center mb-3">
+                                    <i class="fas fa-dollar-sign fa-3x mb-3" style="color: var(--gt-gold);"></i>
+                                    <h6>Financial Technology</h6>
+                                    <p class="small">Quantitative Analysis, Risk Modeling, Fintech Solutions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="lead">I'm always interested in new opportunities and collaborations</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card fade-in">
+                        <div class="card-body p-5">
+                            <div class="row">
+                                <div class="col-md-6 text-center mb-4">
+                                    <i class="fas fa-envelope fa-3x mb-3" style="color: var(--gt-navy);"></i>
+                                    <h5>Email</h5>
+                                    <p><a href="mailto:sebastianstephens25@gmail.com" class="text-decoration-none">sebastianstephens25@gmail.com</a></p>
+                                </div>
+                                <div class="col-md-6 text-center mb-4">
+                                    <i class="fab fa-github fa-3x mb-3" style="color: var(--gt-navy);"></i>
+                                    <h5>Github</h5>
+                                    <p><a href="https://github.com/step021" class="text-decoration-none">step021</a></p>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-6 text-center mb-4">
+                                    <i class="fab fa-linkedin fa-3x mb-3" style="color: var(--gt-navy);"></i>
+                                    <h5>LinkedIn</h5>
+                                    <p><a href="https://www.linkedin.com/in/sebastianxstephens" class="text-decoration-none" target="_blank">sebastianxstephens</a></p>
+                                </div>
+                                <div class="col-md-6 text-center mb-4">
+                                    <i class="fas fa-map-marker-alt fa-3x mb-3" style="color: var(--gt-navy);"></i>
+                                    <h5>Location</h5>
+                                    <p>Atlanta, GA | Open to All Locations</p>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <a href="mailto:sebastianstephens25@gmail.com" class="btn btn-primary btn-lg">Send Message</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>&copy; 2025 Sebastian Stephens. All rights reserved.</p>
+            <p class="small">Passionate about technology, finance, and making a positive impact through data-driven solutions.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.fade-in');
+            const windowHeight = window.innerHeight;
+
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        // Navbar background change on scroll
+        function handleNavbarScroll() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(0, 48, 87, 0.95)';
+            } else {
+                navbar.style.backgroundColor = 'var(--gt-navy)';
+            }
+        }
+
+        // Active navigation highlighting
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Event listeners
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+            handleNavbarScroll();
+            updateActiveNav();
+        });
+
+        window.addEventListener('load', () => {
+            handleScrollAnimation();
+            handleNavbarScroll();
+            updateActiveNav();
+        });
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            });
+        });
+
+        // Add typing animation to hero section
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize animations when page loads
+        setTimeout(() => {
+            const heroTitle = document.querySelector('.hero-section h1');
+            const heroSubtitle = document.querySelector('.hero-section h2');
+            
+            if (heroTitle && heroSubtitle) {
+                typeWriter(heroTitle, 'Sebastian Stephens', 150);
+                setTimeout(() => {
+                    typeWriter(heroSubtitle, 'Business Analyst & Data Scientist', 100);
+                }, 2000);
+            }
+        }, 1000);
+
+        // Add smooth reveal animation for progress bars
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+            
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                bar.style.transition = 'width 1.5s ease-in-out';
+                
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 200);
+            });
+        }
+
+        // Trigger progress bar animation when skills section is visible
+        const skillsSection = document.querySelector('#skills');
+        let skillsAnimated = false;
+
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !skillsAnimated) {
+                    animateProgressBars();
+                    skillsAnimated = true;
+                }
+            });
+        }, { threshold: 0.5 });
+
+        if (skillsSection) {
+            skillsObserver.observe(skillsSection);
+        }
+    </script>
+</body>
+</html>
